@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="4dp"
+    android:paddingTop="4dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start"
+        android:layout_marginEnd="64dp"
+        android:orientation="vertical"
+        android:background="@drawable/bubble_system" 
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/answerTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:textAlignment="viewStart"
+            android:layout_marginBottom="4dp"
+            tools:text="أهم الأرقام المذكورة هي 85% كهدف لدقة OCR و 2 ثانية كزمن استجابة للبحث." />
+        
+        <TextView
+            android:id="@+id/sourceAttributionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue_dark"
+            android:textSize="12sp"
+            android:textStyle="italic"
+            android:textAlignment="viewStart"
+            tools:text="المصدر: PRD-Page-2 (راجع الصورة الأصلية)"
+            android:clickable="true"
+            android:focusable="true" />
+        
+        <ImageButton
+            android:id="@+id/sourceImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_image" 
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/view_source_image"
+            android:visibility="gone"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+</LinearLayout>

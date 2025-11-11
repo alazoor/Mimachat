@@ -1,0 +1,68 @@
+[
+  {
+    "artifactId": "core-ktx",
+    "excludes": [],
+    "groupId": "androidx.core",
+    "versionName": "1.12.0"
+  },
+  {
+    "artifactId": "appcompat",
+    "excludes": [],
+    "groupId": "androidx.appcompat",
+    "versionName": "1.6.1"
+  },
+  {
+    "artifactId": "material",
+    "excludes": [],
+    "groupId": "com.google.android.material",
+    "versionName": "1.10.0"
+  },
+  {
+    "artifactId": "constraintlayout",
+    "excludes": [],
+    "groupId": "androidx.constraintlayout",
+    "versionName": "2.1.4"
+  },
+  {
+    "artifactId": "tensorflow-lite",
+    "excludes": [],
+    "groupId": "org.tensorflow",
+    "versionName": "2.13.0"
+  },
+  {
+    "artifactId": "tensorflow-lite-gpu",
+    "excludes": [],
+    "groupId": "org.tensorflow",
+    "versionName": "2.13.0"
+  },
+  {
+    "artifactId": "tess-two",
+    "excludes": [],
+    "groupId": "com.rmtheis",
+    "versionName": "9.1.0"
+  },
+  {
+    "artifactId": "opencv-android",
+    "excludes": [],
+    "groupId": "com.quickbirdstudios",
+    "versionName": "4.9.0.0"
+  },
+  {
+    "artifactId": "vosk-android",
+    "excludes": [],
+    "groupId": "com.alphacephei.vosk",
+    "versionName": "0.3.47"
+  },
+  {
+    "artifactId": "guava",
+    "excludes": [],
+    "groupId": "com.google.guava",
+    "versionName": "31.0.1-android"
+  },
+  {
+    "artifactId": "tensorflow-lite-support",
+    "excludes": [],
+    "groupId": "org.tensorflow",
+    "versionName": "0.4.4"
+  }
+]

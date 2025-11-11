@@ -1,0 +1,100 @@
+// تطبيق إعدادات الإضافة الافتراضية لأندرويد
+plugins {
+id 'com.android.application'
+id 'kotlin-android' // نستخدمها حتى لو كان التطبيق جافا لتسهيل دمج المكتبات الحديثة
+id 'kotlin-kapt' // لإدارة Annotation Processors مثل Room
+}
+
+android {
+namespace 'com.arabic.aitoolkit' // اسم الحزمة الخاص بك
+compileSdk 34 // نهدف إلى أحدث إصدار
+
+defaultConfig {
+applicationId "com.arabic.aitoolkit"
+minSdk 29 // الحد الأدنى لدعم الأجهزة (Android 10+)
+targetSdk 34
+versionCode 1
+versionName "1.0"
+
+testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+}
+
+buildTypes {
+release {
+minifyEnabled true // تفعيل تقليص الكود والتشويش للـ Release
+proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+}
+}
+
+// لضمان التوافق مع Java 11 حسب المتطلبات
+compileOptions {
+sourceCompatibility JavaVersion.VERSION_11
+targetCompatibility JavaVersion.VERSION_11
+}
+
+// لاستخدام ميزات Kotlin إذا لزم الأمر
+kotlinOptions {
+jvmTarget = '11'
+}
+}
+
+dependencies {
+// تبعيات أساسية لنظام أندرويد
+implementation 'androidx.core:core-ktx:1.12.0'
+implementation 'androidx.appcompat:appcompat:1.6.1'
+implementation 'com.google.android.material:material:1.10.0'
+implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+
+// 1. قاعدة بيانات ROOM (Persistence) - تم التأكد من استخدام kapt
+def room_version = "2.6.1"
+implementation "androidx.room:room-runtime:$room_version"
+// يجب استخدام kapt مع Kotlin
+kapt "androidx.room:room-compiler:$room_version"
+
+// 2. TensorFlow Lite (On-device model inference) - تم الإبقاء على الإصدار الموصى به
+implementation 'org.tensorflow:tensorflow-lite:2.13.0'
+implementation 'org.tensorflow:tensorflow-lite-gpu:2.13.0'
+// إضافة مكتبة الدعم (TFLite Support Library) الضرورية للـ Tokenizer
+implementation "org.tensorflow:tensorflow-lite-support:0.4.4"
+
+
+// 3. CameraX (مطلوبة لـ CameraActivity.java) - NEWLY ADDED
+def cameraX_version = "1.3.1"
+implementation "androidx.camera:camera-core:$cameraX_version"
+implementation "androidx.camera:camera-camera2:$cameraX_version"
+implementation "androidx.camera:camera-lifecycle:$cameraX_version"
+implementation "androidx.camera:camera-view:$cameraX_version"
+
+// 4. Tesseract-OCR (مطلوبة لـ OCRManager.java) - NEWLY ADDED
+// تم اختيار المكتبة الشائعة 'tess-two'
+implementation 'com.rmtheis:tess-two:9.1.0'
+
+// 5. OpenCV (Image Preprocessing) - تم الإبقاء عليها
+implementation 'com.quickbirdstudios:opencv-android:4.9.0.0'
+
+// 6. Vosk (Offline Speech Recognition) - تم الإبقاء عليها
+implementation 'com.alphacephei.vosk:vosk-android:0.3.47'
+
+// 7. HNSWlib (Vector Similarity Search) - تم الإبقاء على الاعتمادية المحلية
+implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
+
+// 8. Google Guava (لتسهيل عمل CameraX وميزات أخرى) - NEWLY ADDED
+implementation 'com.google.guava:guava:31.0.1-android'
+
+// تبعيات الاختبار
+testImplementation 'junit:junit:4.13.2'
+androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+}
+
+// لضمان أن Room يعمل مع Kotlin/kapt
+apply plugin: 'kotlin-kapt'
+
+// نستخدم هذه الطريقة لتضمين ملفات .aar إذا لم يتم إضافتها في fileTree
+repositories {
+flatDir {
+dirs 'libs'
+}
+// يجب إضافة مستودع JCenter إذا كنت تستخدم tess-two
+// maven { url 'https://repo1.maven.org/maven2/' }
+}
